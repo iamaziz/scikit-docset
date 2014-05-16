@@ -1,0 +1,11 @@
+sklearn.grid_search.ParameterSampler
+====================================
+
+.. currentmodule:: sklearn.grid_search
+
+.. autoclass:: ParameterSampler
+
+   
+   .. automethod:: __init__
+   
+

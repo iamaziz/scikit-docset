@@ -1,0 +1,7 @@
+sklearn.preprocessing.label_binarize
+====================================
+
+.. currentmodule:: sklearn.preprocessing
+
+.. autofunction:: label_binarize
+

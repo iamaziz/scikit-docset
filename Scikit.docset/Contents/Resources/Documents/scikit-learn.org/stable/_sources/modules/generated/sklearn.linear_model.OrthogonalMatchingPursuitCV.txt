@@ -1,0 +1,11 @@
+sklearn.linear_model.OrthogonalMatchingPursuitCV
+================================================
+
+.. currentmodule:: sklearn.linear_model
+
+.. autoclass:: OrthogonalMatchingPursuitCV
+
+   
+   .. automethod:: __init__
+   
+

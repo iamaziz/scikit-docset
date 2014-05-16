@@ -1,0 +1,11 @@
+sklearn.ensemble.AdaBoostRegressor
+==================================
+
+.. currentmodule:: sklearn.ensemble
+
+.. autoclass:: AdaBoostRegressor
+
+   
+   .. automethod:: __init__
+   
+

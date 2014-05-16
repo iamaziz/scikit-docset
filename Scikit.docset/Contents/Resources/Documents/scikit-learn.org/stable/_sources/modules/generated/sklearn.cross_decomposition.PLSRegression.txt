@@ -1,0 +1,11 @@
+sklearn.cross_decomposition.PLSRegression
+=========================================
+
+.. currentmodule:: sklearn.cross_decomposition
+
+.. autoclass:: PLSRegression
+
+   
+   .. automethod:: __init__
+   
+

@@ -1,0 +1,11 @@
+sklearn.cross_decomposition.PLSSVD
+==================================
+
+.. currentmodule:: sklearn.cross_decomposition
+
+.. autoclass:: PLSSVD
+
+   
+   .. automethod:: __init__
+   
+

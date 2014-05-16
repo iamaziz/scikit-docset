@@ -1,0 +1,79 @@
+
+
+.. _example_applications_plot_out_of_core_classification.py:
+
+
+======================================================
+Out-of-core classification of text documents
+======================================================
+
+This is an example showing how scikit-learn can be used for classification
+using an out-of-core approach.
+
+Out-of-core learning means that we can learn from data that would not fit into
+the computer main memory. To achieve this goal we make use of an online
+classifier (i.e. that supports the `partial_fit` method) that will be fed with
+batches of examples. Moreover, to guarantee that the features space remains the
+same over time we leverage the `HashingVectorizer` class that will project each
+example into the same input space. This is especially useful in the case of
+text classification where new features (e.g. words) are discovered on the fly.
+
+The dataset used in this example is Reuters-21578 as provided by the UCI ML
+repository. It will be automatically downloaded and uncompressed in the current
+directory on first run.
+
+The plot represents is the learning curve of the classifier i.e. the evolution
+of classification accuracy with the number of mini-batches fed to the
+classifier.
+
+`ReutersParser` and `ReutersStreamReader` classes are utility classes to parse
+and stream examples to the main learning loop.
+
+To limit the amount of consumed memory at any time we enqueue examples up to a
+fixed amount before calling the features transformation and learning routines.
+We then clear the examples queue and proceed with enqueuing again and so on.
+
+To study the performance of the method we sample the first 1000 examples of the
+dataset and hold them out as separate testing data. We then use it to estimate
+accuracy after each mini-batch.
+
+
+
+.. image:: images/plot_out_of_core_classification_1.png
+    :align: center
+
+
+**Script output**::
+
+  Test set is 985 documents (132 positive)
+     100 train docs (     6 positive)    985 test docs (   132 positive) accuracy: 0.861 in 0.62s (  161 docs/s)
+     975 train docs (   127 positive)    985 test docs (   132 positive) accuracy: 0.901 in 1.23s (  795 docs/s)
+    1888 train docs (   235 positive)    985 test docs (   132 positive) accuracy: 0.924 in 1.81s ( 1043 docs/s)
+    2423 train docs (   280 positive)    985 test docs (   132 positive) accuracy: 0.887 in 2.28s ( 1061 docs/s)
+    3334 train docs (   449 positive)    985 test docs (   132 positive) accuracy: 0.950 in 2.83s ( 1177 docs/s)
+    4316 train docs (   539 positive)    985 test docs (   132 positive) accuracy: 0.938 in 3.45s ( 1251 docs/s)
+    5277 train docs (   677 positive)    985 test docs (   132 positive) accuracy: 0.954 in 4.04s ( 1305 docs/s)
+    6250 train docs (   779 positive)    985 test docs (   132 positive) accuracy: 0.951 in 4.67s ( 1338 docs/s)
+    7126 train docs (   844 positive)    985 test docs (   132 positive) accuracy: 0.960 in 5.19s ( 1373 docs/s)
+    8116 train docs (   982 positive)    985 test docs (   132 positive) accuracy: 0.962 in 5.82s ( 1395 docs/s)
+    9102 train docs (  1122 positive)    985 test docs (   132 positive) accuracy: 0.953 in 6.40s ( 1422 docs/s)
+   10061 train docs (  1224 positive)    985 test docs (   132 positive) accuracy: 0.960 in 6.98s ( 1440 docs/s)
+   10974 train docs (  1336 positive)    985 test docs (   132 positive) accuracy: 0.962 in 7.63s ( 1438 docs/s)
+   11955 train docs (  1485 positive)    985 test docs (   132 positive) accuracy: 0.961 in 8.27s ( 1446 docs/s)
+   12938 train docs (  1611 positive)    985 test docs (   132 positive) accuracy: 0.964 in 9.00s ( 1437 docs/s)
+   13732 train docs (  1697 positive)    985 test docs (   132 positive) accuracy: 0.962 in 9.58s ( 1433 docs/s)
+   14370 train docs (  1751 positive)    985 test docs (   132 positive) accuracy: 0.950 in 10.14s ( 1417 docs/s)
+   15336 train docs (  1857 positive)    985 test docs (   132 positive) accuracy: 0.962 in 10.81s ( 1418 docs/s)
+   16308 train docs (  1968 positive)    985 test docs (   132 positive) accuracy: 0.959 in 11.48s ( 1420 docs/s)
+   17281 train docs (  2136 positive)    985 test docs (   132 positive) accuracy: 0.961 in 12.08s ( 1430 docs/s)
+   18271 train docs (  2257 positive)    985 test docs (   132 positive) accuracy: 0.968 in 12.69s ( 1440 docs/s)
+
+
+
+**Python source code:** :download:`plot_out_of_core_classification.py <plot_out_of_core_classification.py>`
+
+.. literalinclude:: plot_out_of_core_classification.py
+    :lines: 36-
+
+**Total running time of the example:**  13.14 seconds
+    

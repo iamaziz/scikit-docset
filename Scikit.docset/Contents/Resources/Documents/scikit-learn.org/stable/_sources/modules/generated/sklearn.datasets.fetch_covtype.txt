@@ -1,0 +1,7 @@
+sklearn.datasets.fetch_covtype
+==============================
+
+.. currentmodule:: sklearn.datasets
+
+.. autofunction:: fetch_covtype
+

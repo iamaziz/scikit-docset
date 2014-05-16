@@ -1,0 +1,7 @@
+sklearn.datasets.make_gaussian_quantiles
+========================================
+
+.. currentmodule:: sklearn.datasets
+
+.. autofunction:: make_gaussian_quantiles
+

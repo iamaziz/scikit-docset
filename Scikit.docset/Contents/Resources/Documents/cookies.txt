@@ -1,0 +1,5 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+www.ohloh.net	TRUE	/	FALSE	1999999999	_ohloh_session	BAh7BjoPc2Vzc2lvbl9pZCIlYjNkODdhOTAyOWYwM2JhMzI0ODZjMGEyNGE1N2FiYWI%3D--8db125f70636da270026d22e15030a39d534e883
+www.ohloh.net	TRUE	/	FALSE	1999999999	uid	rB0lM1N0XFqLWhFiBzpuAg==
+

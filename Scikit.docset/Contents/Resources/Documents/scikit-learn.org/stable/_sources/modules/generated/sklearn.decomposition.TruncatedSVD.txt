@@ -1,0 +1,11 @@
+sklearn.decomposition.TruncatedSVD
+==================================
+
+.. currentmodule:: sklearn.decomposition
+
+.. autoclass:: TruncatedSVD
+
+   
+   .. automethod:: __init__
+   
+

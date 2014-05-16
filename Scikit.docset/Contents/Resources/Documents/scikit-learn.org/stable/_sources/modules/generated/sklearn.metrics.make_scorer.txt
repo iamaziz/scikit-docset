@@ -1,0 +1,7 @@
+sklearn.metrics.make_scorer
+===========================
+
+.. currentmodule:: sklearn.metrics
+
+.. autofunction:: make_scorer
+

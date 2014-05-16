@@ -1,0 +1,11 @@
+sklearn.grid_search.RandomizedSearchCV
+======================================
+
+.. currentmodule:: sklearn.grid_search
+
+.. autoclass:: RandomizedSearchCV
+
+   
+   .. automethod:: __init__
+   
+

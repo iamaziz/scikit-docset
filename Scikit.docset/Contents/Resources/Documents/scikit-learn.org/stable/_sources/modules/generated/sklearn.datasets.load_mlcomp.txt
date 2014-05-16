@@ -1,0 +1,7 @@
+sklearn.datasets.load_mlcomp
+============================
+
+.. currentmodule:: sklearn.datasets
+
+.. autofunction:: load_mlcomp
+

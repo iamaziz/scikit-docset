@@ -1,0 +1,7 @@
+sklearn.datasets.make_biclusters
+================================
+
+.. currentmodule:: sklearn.datasets
+
+.. autofunction:: make_biclusters
+

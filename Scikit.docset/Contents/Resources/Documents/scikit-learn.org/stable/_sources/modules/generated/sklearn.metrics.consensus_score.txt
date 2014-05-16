@@ -1,0 +1,7 @@
+sklearn.metrics.consensus_score
+===============================
+
+.. currentmodule:: sklearn.metrics
+
+.. autofunction:: consensus_score
+

@@ -1,0 +1,7 @@
+sklearn.metrics.log_loss
+========================
+
+.. currentmodule:: sklearn.metrics
+
+.. autofunction:: log_loss
+

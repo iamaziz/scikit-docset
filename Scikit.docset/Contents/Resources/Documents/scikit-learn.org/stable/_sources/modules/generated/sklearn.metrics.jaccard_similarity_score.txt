@@ -1,0 +1,7 @@
+sklearn.metrics.jaccard_similarity_score
+========================================
+
+.. currentmodule:: sklearn.metrics
+
+.. autofunction:: jaccard_similarity_score
+

@@ -1,0 +1,11 @@
+sklearn.cluster.bicluster.SpectralCoclustering
+==============================================
+
+.. currentmodule:: sklearn.cluster.bicluster
+
+.. autoclass:: SpectralCoclustering
+
+   
+   .. automethod:: __init__
+   
+

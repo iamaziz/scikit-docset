@@ -1,0 +1,11 @@
+sklearn.grid_search.ParameterGrid
+=================================
+
+.. currentmodule:: sklearn.grid_search
+
+.. autoclass:: ParameterGrid
+
+   
+   .. automethod:: __init__
+   
+

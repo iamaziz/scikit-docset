@@ -1,0 +1,11 @@
+sklearn.neural_network.BernoulliRBM
+===================================
+
+.. currentmodule:: sklearn.neural_network
+
+.. autoclass:: BernoulliRBM
+
+   
+   .. automethod:: __init__
+   
+

@@ -1,0 +1,11 @@
+sklearn.cross_decomposition.PLSCanonical
+========================================
+
+.. currentmodule:: sklearn.cross_decomposition
+
+.. autoclass:: PLSCanonical
+
+   
+   .. automethod:: __init__
+   
+

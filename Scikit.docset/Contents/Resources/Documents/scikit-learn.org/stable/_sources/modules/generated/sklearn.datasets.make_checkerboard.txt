@@ -1,0 +1,7 @@
+sklearn.datasets.make_checkerboard
+==================================
+
+.. currentmodule:: sklearn.datasets
+
+.. autofunction:: make_checkerboard
+

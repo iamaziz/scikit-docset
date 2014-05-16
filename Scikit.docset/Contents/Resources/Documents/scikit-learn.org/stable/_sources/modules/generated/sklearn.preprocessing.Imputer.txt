@@ -1,0 +1,11 @@
+sklearn.preprocessing.Imputer
+=============================
+
+.. currentmodule:: sklearn.preprocessing
+
+.. autoclass:: Imputer
+
+   
+   .. automethod:: __init__
+   
+

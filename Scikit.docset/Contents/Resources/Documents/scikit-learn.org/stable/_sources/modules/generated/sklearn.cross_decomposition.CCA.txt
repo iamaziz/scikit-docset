@@ -1,0 +1,11 @@
+sklearn.cross_decomposition.CCA
+===============================
+
+.. currentmodule:: sklearn.cross_decomposition
+
+.. autoclass:: CCA
+
+   
+   .. automethod:: __init__
+   
+

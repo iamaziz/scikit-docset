@@ -1,0 +1,11 @@
+sklearn.neighbors.DistanceMetric
+================================
+
+.. currentmodule:: sklearn.neighbors
+
+.. autoclass:: DistanceMetric
+
+   
+   .. automethod:: __init__
+   
+

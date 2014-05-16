@@ -1,0 +1,11 @@
+sklearn.ensemble.AdaBoostClassifier
+===================================
+
+.. currentmodule:: sklearn.ensemble
+
+.. autoclass:: AdaBoostClassifier
+
+   
+   .. automethod:: __init__
+   
+
