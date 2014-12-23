@@ -11,7 +11,7 @@ def main():
     os.system(cmdcommand)
 
     # docset config
-    docset_name = 'Scikit.docset'
+    docset_name = 'Scikit-learn.docset'
     output = docset_name + '/Contents/Resources/Documents/'
 
     # create docset directory
