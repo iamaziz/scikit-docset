@@ -3,11 +3,13 @@ import sqlite3
 import os
 import urllib
 from bs4 import BeautifulSoup as bs
+import plistlib
 
 
 def main():
     # download html documentation
-    cmdcommand = """ cd . && rm -rf Scikit.docset && mkdir -p Scikit.docset/Contents/Resources/Documents && cd Scikit.docset && httrack -%v2 -T60 -R99 --sockets=7 -%c1000 -c10 -A999999999 -%N0 --disable-security-limits -F 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.19 (KHTML, like Gecko) Ubuntu/11.10 Chromium/18.0.1025.168' --mirror --keep-alive --robots=0 "http://scikit-learn.org/stable/" -n -* +*.css +*css.php +*.ico +*/fonts/* +*.svg +*.ttf +fonts.googleapis.com* +*.woff +*.eot +*.png +*.jpg +*.gif +*.jpeg +*.js +http://scikit-learn.org/stable/* -github.com* +raw.github.com* && rm -rf hts-* && mkdir -p Contents/Resources/Documents && mv -f *.* Contents/Resources/Documents/ """
+    cmdcommand = """cd . && 
+    	rm -rf Scikit-learn.docset && mkdir -p Scikit-learn.docset/Contents/Resources/Documents && cd Scikit-learn.docset && httrack -%v2 -T60 -R99 --sockets=7 -%c1000 -c10 -A999999999 -%N0 --disable-security-limits -F 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.19 (KHTML, like Gecko) Ubuntu/11.10 Chromium/18.0.1025.168' --mirror --keep-alive --robots=0 "http://scikit-learn.org/stable/" -n -* +*.css +*css.php +*.ico +*/fonts/* +*.svg +*.ttf +fonts.googleapis.com* +*.woff +*.eot +*.png +*.jpg +*.gif +*.jpeg +*.js +http://scikit-learn.org/stable/* -github.com* +raw.github.com* && rm -rf hts-* && mkdir -p Contents/Resources/Documents && mv -f *.* Contents/Resources/Documents/ """
     os.system(cmdcommand)
 
     # docset config
@@ -33,7 +35,8 @@ def update_db(name, typ, path):
         dbname = cur.fetchone()
 
         if dbpath is None and dbname is None:
-            cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (?,?,?)', (name, typ, path))
+            cur.execute(
+                'INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (?,?,?)', (name, typ, path))
             print(
                 'DB add >> name: {0} | type: {1} | path: {2}'.format(name, typ, path))
         else:
@@ -45,10 +48,10 @@ def update_db(name, typ, path):
 
 def add_urls():
     # index pages
-    pages = {'Sample':'http://scikit-learn.org/stable/auto_examples/index.html',
-             'Class':'http://scikit-learn.org/stable/modules/classes.html',
-             'Guide':'http://scikit-learn.org/stable/user_guide.html',
-             'Resource':'http://scikit-learn.org/stable/tutorial/basic/tutorial.html', }
+    pages = {'Sample': 'http://scikit-learn.org/stable/auto_examples/index.html',
+             'Class': 'http://scikit-learn.org/stable/modules/classes.html',
+             'Guide': 'http://scikit-learn.org/stable/user_guide.html',
+             'Resource': 'http://scikit-learn.org/stable/tutorial/basic/tutorial.html', }
 
     filtered = ('http', '/')
     dir_path = ['Class', 'Sample', 'Guide']
@@ -82,28 +85,21 @@ def add_urls():
                     update_db(name, typ, path)
 
 
-def add_infoplist():
-    name = docset_name.split('.')[0]
-    info = " <?xml version=\"1.0\" encoding=\"UTF-8\"?>"\
-           "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\"> "\
-           "<plist version=\"1.0\"> "\
-           "<dict> "\
-           "    <key>CFBundleIdentifier</key> "\
-           "    <string>{0}</string> "\
-           "    <key>CFBundleName</key> "\
-           "    <string>{1}</string>"\
-           "    <key>DocSetPlatformFamily</key>"\
-           "    <string>{2}</string>"\
-           "    <key>isDashDocset</key>"\
-           "    <true/>"\
-           "    <key>isJavaScriptEnabled</key>"\
-           "    <true/>"\
-           "    <key>dashIndexFilePath</key>"\
-           "    <string>{3}</string>"\
-           "</dict>"\
-           "</plist>".format(name, name, name, 'scikit-learn.org/stable/' + 'index.html')
+def add_infoplist(base_page, docset_name):
 
-    open(docset_name + '/Contents/info.plist', 'wb').write(info)
+    index_file = base_page.split("//")[1] + 'index.html'
+    name = docset_name.split('.')[0]
+
+    plist_path = os.path.join(docset_name, "Contents", "Info.plist")
+    plist_cfg = {
+        'CFBundleIdentifier': name,
+        'CFBundleName': name,
+        'DocSetPlatformFamily': name.lower(),
+        'DashDocSetFamily': 'python',
+        'isDashDocset': True,
+        'dashIndexFilePath': index_file
+    }
+    plistlib.writePlist(plist_cfg, plist_path)
 
 
 if __name__ == '__main__':
@@ -117,12 +113,14 @@ if __name__ == '__main__':
         cur.execute('DROP TABLE searchIndex;')
     except:
         pass
-        cur.execute('CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);')
-        cur.execute('CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);')
+        cur.execute(
+            'CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);')
+        cur.execute(
+            'CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);')
 
     # scan index pages and populate SQLite
     add_urls()
-    add_infoplist()
+    add_infoplist('http://scikit-learn.org/stable/', docset_name)
 
     # commit and close db
     db.commit()
