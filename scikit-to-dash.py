@@ -22,7 +22,7 @@ def main():
 
     # add icon
     icon = 'http://nbviewer.ipython.org/github/glouppe/talk-sklearn-mloss-nips2013/blob/master/oral/sklearn-logo.png'
-    urllib.urlretrieve(icon, docset_name + "/icon.png")
+    urllib.request.urlretrieve(icon, docset_name + "/icon.png")
 
     return docset_name
 
